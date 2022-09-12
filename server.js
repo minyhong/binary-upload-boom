@@ -50,6 +50,12 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+// middleware function to determine whether user is logged in
+app.use(function(req, res, next) {
+  res.locals.currentUser = req.user;
+  next();
+});
+
 //Use flash messages for errors, info, ect...
 app.use(flash());
 
