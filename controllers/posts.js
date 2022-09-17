@@ -18,6 +18,9 @@ module.exports = {
       console.log(err);
     }
   },
+  submitPost: (req, res) => {
+    res.render("submit.ejs");
+  },
   getPost: async (req, res) => {
     try {
       const post = await Post.findById(req.params.id);
@@ -35,7 +38,8 @@ module.exports = {
         title: req.body.title,
         image: result.secure_url,
         cloudinaryId: result.public_id,
-        caption: req.body.caption,
+        description: req.body.description,
+        // location: req.body.location,
         likes: 0,
         user: req.user.id,
       });
