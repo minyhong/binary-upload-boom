@@ -8,16 +8,18 @@
         <input type="text" class="form-control" id="title" name="title">
     </div>
     <div class="mb-3">
-      <label for="caption" class="form-label">Location</label>
-      <textarea class="form-control" id="caption" name="caption"></textarea>
+      <label for="location" class="form-label">Location</label>
+      <textarea class="form-control" id="location" name="location"></textarea>
     </div>
     <div class="mb-3">
       <label for="caption" class="form-label">Caption</label>
       <textarea class="form-control" id="caption" name="caption"></textarea>
     </div>
     <div class="mb-3">
-      <label for="imgUpload" class="form-label">Image</label>
-      <input type="file" class="form-control" id="imageUpload" name="file">
+      <!-- <label for="imgUpload" class="form-label">Image</label>
+      <input type="file" class="form-control" id="imageUpload" name="file"> -->
+      <label for="formFileMultiple" class="form-label">Multiple files input example</label>
+      <input class="form-control" type="file" id="formFileMultiple" name="file" multiple />
     </div>
     <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
   </form>
