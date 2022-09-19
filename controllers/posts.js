@@ -33,13 +33,27 @@ module.exports = {
     try {
       // Upload image to cloudinary
       const result = await cloudinary.uploader.upload(req.file.path);
+      
+      // vv trying out code to uploade multiple files into cloundinary I found online vv
+      // const cloudinaryImageUploadMethod = async file => {
+      //   return new Promise(resolve => {
+      //     cloudinary.uploader.upload(req.file.path, (err, res) => {
+      //       if (err) return res.status(500).send("upload image error")
+      //         resolve({
+      //           url: res.secure_url,
+      //           id: res.public_id
+      //         })
+      //     })
+      //   })
+      // }
+      // ^^ trying out code to uploade multiple files into cloundinary I found online ^^
 
       await Post.create({
         title: req.body.title,
         image: result.secure_url,
         cloudinaryId: result.public_id,
-        description: req.body.description,
-        // location: req.body.location,
+        caption: req.body.caption,
+        location: req.body.location,
         likes: 0,
         user: req.user.id,
       });
