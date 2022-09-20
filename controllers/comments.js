@@ -1,4 +1,3 @@
-const Post = require("../models/Post");
 const Comment = require("../models/Comment");
 
 module.exports = {
@@ -7,9 +6,9 @@ module.exports = {
       await Comment.create({
         comment: req.body.comment,
         likes: 0,
-        user: req.user.id,
+        // user: req.user.id,
         postID: req.params.id,
-        // commentByUser:
+        commentByUser: req.user.id,
       });
       console.log("Comment has been added!");
       res.redirect("/post/"+req.params.id);
