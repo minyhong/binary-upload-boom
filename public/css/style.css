@@ -1,5 +1,19 @@
-.front-page-header {
+/* .front-page-header {
   height: 500px;
   width: 500px;
+} */
+
+.BYF {
+  font-size: 90px;
+  /* color: rgb(200, 157, 124); */
+  color: rgb(200, 200, 200);
 }
 
+.front-page-header {
+  height: 400px;
+}
+
+.BYF + p {
+  width: 500px;
+  font-size: large;
+}

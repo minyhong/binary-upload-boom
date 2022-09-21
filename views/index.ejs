@@ -8,7 +8,7 @@
 
 <!-- Background darker opacity image -->
 <div class="bg-image front-page-bkgd-img" 
-     style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.35) 0%,rgba(0,0,0,0.35) 100%), url('/imgs/andrew-ridley-6KCS---7jbc-unsplash.jpg');
+     style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%,rgba(0,0,0,0.45) 100%), url('/imgs/andrew-ridley-6KCS---7jbc-unsplash.jpg');
             height: 90vh;">
 <!-- Background darker opacity image -->
 
@@ -16,18 +16,18 @@
     <%if (!currentUser){ %>
         <main class="container">
             <div class="row justify-content-end mt-3">
-                <a href="/login" class="col-2 mr-3 btn btn-light btn-sm"> Login</a>
+                <a href="/login" class="col-2 btn btn-light btn-sm"> Login</a>
                 <a href="/signup" class="col-2 btn btn-dark btn-sm"> Signup</a>
             </div>
         </main>
     <%}%>
 
     <header class="container mt-5 front-page-header">
-        <div class="d-flex align-items-center flex-column text-center mb-3 text-white">
-            <h1 class="text-white pt-5 display-1 fw-normal "><a href="/profile" class="link-dark">Backyard Forager</a></h1>
-            <p>Post photos and details of your foraged goods. Get community help identifying tasty treats and even harmful look-a-likes. Learn about the many fungi and plants growing in your neighborhood!</p>
-            <span class="lead">Explore what ingredients your backyard has to offer!</span>
-            <h3 class="pt-3"> <a href="/signup" class="btn btn-dark btn-sm">Join us!</a></h3>
+        <div class="d-flex align-items-center flex-column text-center text-white front-page-header">
+            <h1 class="BYF pt-5 display-1 fw-bold ">Backyard Forager</h1>
+            <p>A place to record and share your foraging adventures with like minded people. Learn about the many fungi and plants growing in your neighborhood! Turn some into dinner! </p>
+            <span class="lead">Explore the diverse wildlife your backyard has to offer!</span>
+            <a href="/signup" class="btn btn-dark btn-sm mt-3">Join us!</a>
         </div>
     </header>
 </div>
