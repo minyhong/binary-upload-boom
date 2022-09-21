@@ -1,12 +1,36 @@
 <%- include('partials/header') -%>
 
+<!-- Background brighter opacity image -->
+<!-- <div class="bg-image front-page-bkgd-img" 
+     style="background-image: linear-gradient(to bottom, rgba(255,255,255,0.3) 0%,rgba(255,255,255,0.3) 100%), url('/imgs/andrew-ridley-6KCS---7jbc-unsplash.jpg');
+            height: 90vh;"> -->
+<!-- Background brighter opacity image -->
 
-<main class="container">
-    <div class="row justify-content-around mt-5">
-        <a href="/login" class="col-3 btn btn-primary"> Login</a>
-        <a href="/signup" class="col-3 btn btn-primary"> Signup</a>
-    </div>
-</main>
-    
+<!-- Background darker opacity image -->
+<div class="bg-image front-page-bkgd-img" 
+     style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.35) 0%,rgba(0,0,0,0.35) 100%), url('/imgs/andrew-ridley-6KCS---7jbc-unsplash.jpg');
+            height: 90vh;">
+<!-- Background darker opacity image -->
+
+
+    <%if (!currentUser){ %>
+        <main class="container">
+            <div class="row justify-content-end mt-3">
+                <a href="/login" class="col-2 mr-3 btn btn-light btn-sm"> Login</a>
+                <a href="/signup" class="col-2 btn btn-dark btn-sm"> Signup</a>
+            </div>
+        </main>
+    <%}%>
+
+    <header class="container mt-5 front-page-header">
+        <div class="d-flex align-items-center flex-column text-center mb-3 text-white">
+            <h1 class="text-white pt-5 display-1 fw-normal "><a href="/profile" class="link-dark">Backyard Forager</a></h1>
+            <p>Post photos and details of your foraged goods. Get community help identifying tasty treats and even harmful look-a-likes. Learn about the many fungi and plants growing in your neighborhood!</p>
+            <span class="lead">Explore what ingredients your backyard has to offer!</span>
+            <h3 class="pt-3"> <a href="/signup" class="btn btn-dark btn-sm">Join us!</a></h3>
+        </div>
+    </header>
+</div>
+
 
 <%- include('partials/footer') -%>
