@@ -17,3 +17,8 @@
   width: 500px;
   font-size: large;
 }
+
+.login-img {
+  max-width: 100%;
+  height: auto;
+}
