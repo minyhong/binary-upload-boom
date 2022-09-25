@@ -22,3 +22,7 @@
   max-width: 100%;
   height: auto;
 }
+
+.comment-card {
+  min-height: 50px;
+}
