@@ -50,7 +50,16 @@
               <span>Posted by: </span>
               <a class="link-unstyled" href="#"><%= comments[i].commentByUserName %></a>
             </div>
-            <%= comments[i].comment%>
+            <p class="pt-1"><%= comments[i].comment%></p>
+            <%if(comments[i].commentByUserID == user.id){ %>
+              <form
+                action="/post/deletePost/<%= post.id %>?_method=DELETE"
+                method="POST"
+                class="col-3"
+              >
+                <button class="btn btn-primary fa fa-trash" type="submit"></button>
+              </form>
+              <%}%>
             <!-- <form 
               action="/comment/likePost/<%= comments.id %>?_method=PUT"
               method="POST">
