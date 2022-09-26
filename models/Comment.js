@@ -13,9 +13,12 @@ const CommentSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  commentByUser: {
+  commentByUserID: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
+  },
+  commentByUserName: {
+    type: String,
   },
   createdAt: {
     type: Date,
