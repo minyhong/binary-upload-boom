@@ -45,10 +45,10 @@
       <h2>Comments</h2>
       <ul>
         <% for(var i=0; i<comments.length; i++) {%>
-          <li class="col-6 justify-content-between mb-2 card comment-card p-3">
+          <li class="col-6 justify-content-between mb-2 card p-3">
             <div>
               <span>Posted by: </span>
-              <a class="link-unstyled" href="#"><%= comments[i].commentByUserName %></a>
+              <a class="link-unstyled" href="#"><%= comments[i].commentByUserID.userName %></a>
             </div>
             <p class="pt-1"><%= comments[i].comment%></p>
             <%if(comments[i].commentByUserID == user.id){ %>
