@@ -85,14 +85,22 @@ module.exports = {
       let post = await Post.findById({ _id: req.params.id });
       let comments = await Comment.find({ postID: req.params.id })
       // Delete image from cloudinary
-      await cloudinary.uploader.destroy(post.cloudinaryId);
+      if (typeof post.cloudinaryId === 'object') {
+        for (let i = 0; i < post.cloudinaryId.length; i++) {
+          await cloudinary.uploader.destroy.cloudinaryId;
+        }
+      } else {
+        await cloudinary.uploader.destroy(post.cloudinaryId);
+      }
       // Delete post from db
       await Post.remove({ _id: req.params.id });
       // Delete the comments that were in the deleted post
       await Comment.remove({ postID: req.params.id });
+      console.log(post, comments)
       console.log("Deleted Post");
       res.redirect("/profile");
     } catch (err) {
+      console.log(err)
       res.redirect("/profile");
     }
   },
