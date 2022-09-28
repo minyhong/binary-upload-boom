@@ -85,10 +85,12 @@ module.exports = {
       let post = await Post.findById({ _id: req.params.id });
       let comments = await Comment.find({ postID: req.params.id })
       // Delete image from cloudinary
+      // How to delete if multiple images
       if (typeof post.cloudinaryId === 'object') {
         for (let i = 0; i < post.cloudinaryId.length; i++) {
           await cloudinary.uploader.destroy.cloudinaryId;
         }
+        // how to delete if single image
       } else {
         await cloudinary.uploader.destroy(post.cloudinaryId);
       }
