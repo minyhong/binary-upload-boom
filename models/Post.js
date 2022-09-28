@@ -6,11 +6,11 @@ const PostSchema = new mongoose.Schema({
     required: true,
   },
   image: {
-    type: String,
+    type: [String],
     require: true,
   },
   cloudinaryId: {
-    type: String,
+    type: [String],
     require: true,
   },
   caption: {

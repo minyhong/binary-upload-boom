@@ -15,6 +15,7 @@ module.exports = {
   getFeed: async (req, res) => {
     try {
       const posts = await Post.find().sort({ createdAt: "desc" }).lean();
+      console.log(typeof posts[0].image === 'object')
       res.render("feed.ejs", { posts: posts });
     } catch (err) {
       console.log(err);
@@ -37,26 +38,22 @@ module.exports = {
   createPost: async (req, res) => {
     try {
       // Upload image to cloudinary
-      const result = await cloudinary.uploader.upload(req.file.path);
+      // const result = await cloudinary.uploader.upload(req.file.path);
       
-      // vv trying out code to uploade multiple files into cloundinary I found online vv
-      // const cloudinaryImageUploadMethod = async file => {
-      //   return new Promise(resolve => {
-      //     cloudinary.uploader.upload(req.file.path, (err, res) => {
-      //       if (err) return res.status(500).send("upload image error")
-      //         resolve({
-      //           url: res.secure_url,
-      //           id: res.public_id
-      //         })
-      //     })
-      //   })
-      // }
-      // ^^ trying out code to uploade multiple files into cloundinary I found online ^^
+      const imageUrlList = [];
+      const cloudinaryID = [];
+
+      for (let i = 0; i < req.files.length; i++) {
+        let localFilePath = req.files[i].path;
+        let result = await cloudinary.uploader.upload(localFilePath);
+        imageUrlList.push(result.secure_url);
+        cloudinaryID.push(result.public_id);
+      }
 
       await Post.create({
         title: req.body.title,
-        image: result.secure_url,
-        cloudinaryId: result.public_id,
+        image: imageUrlList,
+        cloudinaryId: cloudinaryID,
         caption: req.body.caption,
         location: req.body.location,
         likes: 0,
