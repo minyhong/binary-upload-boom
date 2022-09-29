@@ -3,25 +3,25 @@
   <div class="row justify-content-center mt-5">
     <div class="col-6">
       <h2><%= post.title %></h2>
+      <% if (post.image.length > 1) {%>
 <!-- Carousel wrapper! -->
-      <div id="carouselExampleIndicators" class="carousel slide" data-mdb-ride="carousel">
+      <div id="carouselExampleIndicators" class="carousel slide mb-3" data-mdb-ride="carousel">
         <div class="carousel-indicators">
-          <% if (typeof post.image === 'object') { %>
-            <% for(var i=0; i<post.image.length; i++) {%>
-              <!-- <img src="<%= post.image[i]%>" alt="" class="img-fluid mb-5"> -->
-              <button
-                type="button"
-                data-mdb-target="#carouselExampleIndicators"
-                data-mdb-slide-to="<%=i%>"
-                class="active"
-                aria-current="true"
-                aria-label="Slide <%=i+1%>"
-              ></button>
-            <%}%>
+          <% for (let i=0; i<post.image.length; i++) {%>
+            <!-- <img src="<%= post.image[i]%>" alt="" class="img-fluid mb-5"> -->
+            <button
+              type="button"
+              data-mdb-target="#carouselExampleIndicators"
+              data-mdb-slide-to="<%= i %>"
+              class="<%= i === 0 ? "active" : "" %>"
+              aria-current="true"
+              aria-label="Slide <%= i+1 %>"
+            ></button>
+          <%}%>
         </div>
         <div class="carousel-inner">
-          <% for(var i=0; i<post.image.length; i++) {%>
-            <div class="carousel-item">
+          <% for (let i=0; i<post.image.length; i++) {%>
+            <div class="<%= i === 0 ? "carousel-item active": "carousel-item" %>">
               <img src="<%= post.image[i]%>" class="d-block w-100" alt="Wild Landscape"/>
             </div>
           <%}%>
@@ -34,11 +34,10 @@
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
-        <%}%>
       </div>
 <!-- Carousel wrapper! -->
-      <% for(var i=0; i<post.image.length; i++) {%>
-          <img src="<%= post.image[i]%>" alt="" class="img-fluid mb-5">
+      <%} else {%>
+        <img src="<%= post.image[0]%>" alt="" class="img-fluid mb-5">
       <%}%>
       <div class="row justify-content-between">
         <form
@@ -78,29 +77,34 @@
 
     <!-- Comments -->
     <div class="mt-5">
-      <h2>Comments</h2>
+      <h3>Comments</h3>
       <ul>
-        <% for(var i=0; i<comments.length; i++) {%>
+        <% for(let i=0; i<comments.length; i++) {%>
           <li class="col-6 justify-content-between mb-2 card p-3">
             <div>
               <span>Posted by: </span>
               <a class="link-unstyled" href="#"><%= comments[i].commentByUserID.userName %></a>
             </div>
             <p class="pt-1"><%= comments[i].comment%></p>
-            <%if(comments[i].commentByUserID == user.id){ %>
-              <form
-                action="/post/deletePost/<%= post.id %>?_method=DELETE"
-                method="POST"
-                class="col-3"
-              >
-                <button class="btn btn-primary fa fa-trash" type="submit"></button>
+            <div>
+              <form 
+                action="/comment/likeComment/<%= comments[i]._id %>?_method=PUT"
+                method="POST">
+                <button class="btn btn-tertiary fa fa-heart" type="submit">
+                  <span class="badge rounded-pill badge-danger"><%= comments[i].likes %></span>
+                </button>
               </form>
+
+              <% if(commentID[i].commentByUserID == user.id) { %>
+                <form
+                  action="/comment/deleteComment/<%= comments[i]._id %>?_method=DELETE"
+                  method="POST"
+                  class="col-3"
+                >
+                  <button class="btn btn-tertiary deleteBtn" type="submit">DELETE</button>
+                </form>
               <%}%>
-            <!-- <form 
-              action="/comment/likePost/<%= comments.id %>?_method=PUT"
-              method="POST">
-              <button class="btn fa fa-heart" type="submit"></button>
-            </form> -->
+            </div>
           </li>
         <% } %>
       </ul>
